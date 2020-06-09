@@ -1,0 +1,128 @@
+@media screen and (max-width: 836px) {
+    #chat-area #user-area #online-user-text h1{
+        font-size: 23px;}   }/*font-responsibe*/
+@media screen and (max-width: 746px) {
+    #chat-area #user-area #online-user-text h1{
+     font-size: 21px;
+     font-weight: bolder;  }
+    #chat-area #message-area #message-form-area #message-form #message{
+        width: 65%;
+        height: 59%;}
+    #chat-area #message-area #message-form-area #message-form #message-submit{width:45px ;
+        height:45px ;}}
+/*font-responsibe*/
+
+@media screen and (max-width: 575px) {
+    #chat-area #user-area{display: none;
+    }
+    .hide{display: inline-block;}
+    #chat-area #message-area {
+        width: 100%;
+        float: none; 
+    }
+    #chat-area #message-area #message-area-text{
+        font-size:80%; 
+    }
+    #chat-area #message-area #message-display #messages li{
+    font-size: 19px;
+}
+    
+    #chat-area #message-area #message-form-area #message-form #message{
+        font-size: 18px;
+       margin:8px 0 0 7%;     
+    }
+    #chat-area #message-area #message-form-area #message-form #message-submit{
+        width:43px ;
+        height:43px ;
+        margin-left: 2%;
+    }
+    #counter{display: inline-block;}
+    #chat-area #menu-toggle{display: inline-block;}
+}
+
+
+@media screen and (max-width: 420px){
+#chat-area #message-area #message-area-text{
+        font-size:70%; 
+    }
+#chat-area #message-area #message-form-area #message-form #message{
+        width: 63%;
+        height: 57%;
+        margin:8px 0 0 5.6%;
+        padding: 2px 22px 1.5px;
+       font-size: 17px;
+    }
+    #chat-area #message-area #message-form-area #message-form #message-submit{
+        width:42px ;
+        height:42px ;
+        background-size: 32px;
+    }
+    
+    #chat-area #message-area #message-display #messages li{
+    font-size: 17px;
+}
+    
+}
+
+
+
+@media screen and (max-width: 334px){
+    
+    #chat-area #message-area #message-form-area #message-form #message{
+        width: 62%;
+        height: 55%;
+        margin:8px 0 0 4%;
+        padding: 2px 22px 1.5px;
+       font-size: 16px;
+    }
+    #chat-area #message-area #message-form-area #message-form #message-submit{
+        width:40px ;
+        height:40px ;
+        background-size: 28px;
+    }
+    chat-area #message-area #message-display #messages li{
+    font-size: 16px;
+}
+  #chat-area #message-area #message-area-text{
+        font-size:55%; 
+    }  
+    #chat-area #menu-toggle span{
+        width: 25px;
+    height: 3px;
+    margin: 3px auto;
+        
+    }
+    #chat-area #menu-toggle{top: 1.5%;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

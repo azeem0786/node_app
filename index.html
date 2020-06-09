@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="css/send.png" >
+ <script type="text/javascript" src="socket.io/socket.io.js"></script>
+ <script src="js/jquery-3.3.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>app</title>
+    
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+</head>
+<body>
+<!--login-area start-->
+<div id="login-area">
+   <div id="login-text"><h1>Login form</h1></div>
+    
+     <div id="login-form-area">
+        <form action="" id="login-form">
+            <input id="user-name" type="text" required autocomplete="off">
+                        <span class="bar"></span>
+                        <label class="username">User name</label><br>
+            <input id="login-submit" type="submit" value="login">
+        </form> 
+      </div> 
+</div>
+ <!--login-area end--> 
+ 
+ <!-- chat area start-->
+<div id="chat-area">
+
+
+
+<div id="sidebar">
+  <div id="menu-toggle" onclick="menu()">
+    <span></span>
+    <span></span>
+    <span></span>
+    
+    </div>
+    <h2>Online user</h2>
+       
+        <ol id="user-r">
+        
+        </ol>
+    </div>  
+     
+    <!--responsive menu section end-->
+ <div id="user-area">
+   
+      <div id="online-user-text">
+        <h1>Online user:</h1>
+      </div>
+    
+       <div id="online-user">
+        <ol id="user">
+        
+        </ol>
+       </div>
+       <div id="total-user">
+           <h3> online: &#40;<span id="online"></span>&#41;
+           </h3>
+       </div>
+    
+</div>
+       
+     <!-- user-area end-->
+     
+     <!-- message area start-->
+    <div id="message-area">
+    <div id="message-area-text">
+<h1>Welcome to the chattify </h1>
+   <span id="counter">&#40;<b id="r-online"></b>&#41;</span> 
+    </div>     
+     
+   <div id="message-display">     <ul id="messages">
+     
+      
+   </ul>                               
+     </div>                      
+     <div id="message-form-area">
+           
+      <form id="message-form">
+             
+             
+             
+        <input id="message" type="text" placeholder="Type your message here..." autocomplete="off" required> 
+         
+           
+               
+          <input id="message-submit" type="submit" value=" "
+          > 
+                       
+                        
+           </form>     
+         
+           
+     </div>
+     
+     </div> <br clear="all">
+   <!-- message area end-->  
+     
+    </div>
+    <!-- chat area end-->
+    
+    
+    
+    
+    
+</body>
+<script type="text/javascript">
+      
+   var socket =io();
+    
+    
+    function updateUsers(list){
+        for( var i = 0; i < list.length; i++){
+            $('#user').append("<li><b>" + list[i] + "</b></li>")
+        }
+    }
+    function updateUsersr(list){
+        for( var i = 0; i < list.length; i++){
+            $('#user-r').append("<li><b>" + list[i] + "</b></li>")
+        }
+    }
+    
+   $("#login-form").submit(function(event){
+       
+       event.preventDefault();
+        if($("#user-name").val() == "" || $("#user-name").val() == " " ){
+           alert("Invalid user"); 
+            
+        }else {
+            
+            $username = $("#user-name").val();
+            
+            
+               $("#login-area").hide();
+               $("#chat-area").show();
+            
+               $("#messages").html("");
+            
+            socket.emit("has connected", $username );
+        }    
+    });
+    $("#message-form").submit(function(event){
+        event.preventDefault();
+        if($("#message").val() == "" || $("#message").val() == " " ){
+           alert("Invalid user"); }
+        else{
+            socket.emit("new message", {username:$username,message: $("#message").val()} );
+            $("#message").val("");
+            
+            
+            
+        }
+        
+    });
+
+    socket.on("has connected", function(data){
+        $("#user").html("");
+        $("#user-r").html("");
+        updateUsers(data.userslist);
+        updateUsersr(data.userslist);
+    $("#messages").append("<li><i><b>"+ data.username + "</b> has connected</i></li>");
+        
+    });
+    socket.on("has disconnected", function(data){
+        $("#user").html("");
+        $("#user-r").html("");
+        updateUsers(data.userslist);
+        updateUsersr(data.userslist);
+     $("#messages").append("<li><i><b>"+ data.username + "</b> has disconnected</i></li>");   
+        
+    });
+    
+    socket.on("new message",function(data){
+        $("#messages").append("<li><b>" + data.username + "</b>: " + data.message + "</li>")
+        
+        
+    });
+    
+    
+    
+    </script> 
+    <!--online user counter start-->
+    <script>
+    var myVar = setInterval(myTimer, 500);
+
+function myTimer() {
+var x = $( "#user-area #user li" ).length;
+document.getElementById("online").innerHTML = x;
+}
+    </script>
+    <!--online user counter end-->
+    
+    <script>
+    var myVar = setInterval(myTimer, 100);
+
+function myTimer() {
+var x = $( "#user-area #user li" ).length;
+document.getElementById("r-online").innerHTML = x;
+}
+    </script>
+    
+    <script>
+    function menu(){
+     document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("message-area").classList.toggle("active2");
+        
+     }
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
